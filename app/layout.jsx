@@ -2,9 +2,9 @@ import React from 'react';
 import '@/assets/styles/globals.css';
 
 export const metadata = {
-  title: 'PropertyPulse | Find the perfect',
-  description: 'Find some place to trash!',
-  keywords: 'trash, property, find, perfect',
+  title: 'Electronic Freebies | Re-place your replacement parts',
+  description: 'Find or share electronic spare parts',
+  keywords: 'spare parts, electronic spare parts, freebies',
 };
 
 const MainLayout = ({ children }) => {
