@@ -1,0 +1,7 @@
+{
+  "reactSnippets.settings.prettierEnabled": true,
+  "tailwindCSS.emmetCompletions": true,
+  "editor.quickSuggestions": {
+    "strings": true
+  }
+}
