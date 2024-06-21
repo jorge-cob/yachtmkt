@@ -56,11 +56,11 @@ const Navbar = () => {
               <Image
                 className="h-10 w-auto"
                 src={logo}
-                alt="FreebieParts"
+                alt="Bik3mkt"
               />
 
               <span className="hidden md:block text-white text-2xl font-bold ml-2"
-                >FreebieParts</span
+                >Bik3mkt</span
               >
             </Link>
             {/* <!-- Desktop Menu Hidden below md screens --> */}
@@ -73,18 +73,18 @@ const Navbar = () => {
                   >Home</Link
                 >
                 <Link
-                  href="/freebies"
-                  className={ `${pathname === '/freebies' ? 'bg-black' : ''} 
+                  href="/bikes"
+                  className={ `${pathname === '/bikes' ? 'bg-black' : ''} 
                   text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2` }
-                  >Freebies</Link
+                  >Bikes</Link
                 >
                 { isLoggedIn && (
                   <Link
-                    href="/freebies/add"
-                    className={ `${pathname === '/freebies/add' ? 'bg-black' : ''} 
+                    href="/bikes/add"
+                    className={ `${pathname === '/bikes/add' ? 'bg-black' : ''} 
                     text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2` }
                   >
-                      Add Freebie
+                      Add Bike
                   </Link>
                 )}
               </div>
@@ -184,12 +184,12 @@ const Navbar = () => {
                       >Your Profile</Link
                     >
                     <Link
-                      href="/freebies/saved"
+                      href="/bikes/saved"
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-2"
-                      >Saved Freebies</Link
+                      >Saved Bikes</Link
                     >
                     <button
                       className="block px-4 py-2 text-sm text-gray-700"
@@ -219,17 +219,17 @@ const Navbar = () => {
               >Home</Link
             >
             <Link
-              href="/freebies"
-              className={`${pathname === '/freebies' ? 'bg-gray-900' : ''} text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium`}
-              >Freebies</Link
+              href="/bikes"
+              className={`${pathname === '/bikes' ? 'bg-gray-900' : ''} text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium`}
+              >Bikes</Link
             >
             {
               isLoggedIn && (
                 <Link
-                  href="/freebies/add"
-                  className={`${pathname === '/freebies/add' ? 'bg-gray-900' : ''} text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium`}
+                  href="/bikes/add"
+                  className={`${pathname === '/bikes/add' ? 'bg-gray-900' : ''} text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium`}
                 >
-                  Add Freebie
+                  Add Bike
                 </Link>
               )
             }

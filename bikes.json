@@ -1,0 +1,342 @@
+[
+  {
+    "_id": "1",
+    "owner": "1",
+    "name": "Mendiz 57",
+    "type": "Road",
+    "description": "This is a beautiful classic road bike in perfect condition.",
+    "location": {
+      "street": "120 Tremont Street",
+      "city": "Boston",
+      "state": "MA",
+      "zipcode": "02108"
+    },
+    "price": 170,
+    "weight": 6,
+    "size": 27,
+    "components": [
+      "v-brake",
+      "carbon fiber frame",
+      "Shimano Deore shifter"
+    ],
+    "gears": {
+      "front": 3,
+      "rear": 7
+    },
+    "seller_info": {
+      "name": "John Doe",
+      "email": "john@gmail.com",
+      "phone": "617-555-5555"
+    },
+    "images": ["a1.jpg", "a2.jpg", "a3.jpg"],
+    "is_featured": false,
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "2",
+    "owner": "1",
+    "name": "Mendiz 57",
+    "type": "Road",
+    "description": "This is a beautiful classic road bike in perfect condition.",
+    "location": {
+      "street": "120 Tremont Street",
+      "city": "Boston",
+      "state": "MA",
+      "zipcode": "02108"
+    },
+    "price": 170,
+    "weight": 6,
+    "size": 27,
+    "components": [
+      "v-brake",
+      "carbon fiber frame",
+      "Shimano Deore shifter"
+    ],
+    "gears": {
+      "front": 3,
+      "rear": 7
+    },
+    "seller_info": {
+      "name": "John Doe",
+      "email": "john@gmail.com",
+      "phone": "617-555-5555"
+    },
+    "images": ["a1.jpg", "a2.jpg", "a3.jpg"],
+    "is_featured": false,
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  }, 
+  {
+    "_id": "3",
+    "owner": "1",
+    "name": "Mendiz 57",
+    "type": "Road",
+    "description": "This is a beautiful classic road bike in perfect condition.",
+    "location": {
+      "street": "120 Tremont Street",
+      "city": "Boston",
+      "state": "MA",
+      "zipcode": "02108"
+    },
+    "price": 170,
+    "weight": 6,
+    "size": 27,
+    "components": [
+      "v-brake",
+      "carbon fiber frame",
+      "Shimano Deore shifter"
+    ],
+    "gears": {
+      "front": 3,
+      "rear": 7
+    },
+    "seller_info": {
+      "name": "John Doe",
+      "email": "john@gmail.com",
+      "phone": "617-555-5555"
+    },
+    "images": ["a1.jpg", "a2.jpg", "a3.jpg"],
+    "is_featured": false,
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "4",
+    "owner": "2",
+    "name": "Mendiz 57",
+    "type": "Road",
+    "description": "This is a beautiful classic road bike in perfect condition.",
+    "location": {
+      "street": "120 Tremont Street",
+      "city": "Boston",
+      "state": "MA",
+      "zipcode": "02108"
+    },
+    "price": 170,
+    "weight": 6,
+    "size": 27,
+    "components": [
+      "v-brake",
+      "carbon fiber frame",
+      "Shimano Deore shifter"
+    ],
+    "gears": {
+      "front": 3,
+      "rear": 7
+    },
+    "seller_info": {
+      "name": "John Doe",
+      "email": "john@gmail.com",
+      "phone": "617-555-5555"
+    },
+    "images": ["a1.jpg", "a2.jpg", "a3.jpg"],
+    "is_featured": false,
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "5",
+    "owner": "3",
+    "name": "Mendiz 57",
+    "type": "Road",
+    "description": "This is a beautiful classic road bike in perfect condition.",
+    "location": {
+      "street": "120 Tremont Street",
+      "city": "Boston",
+      "state": "MA",
+      "zipcode": "02108"
+    },
+    "price": 170,
+    "weight": 6,
+    "size": 27,
+    "components": [
+      "v-brake",
+      "carbon fiber frame",
+      "Shimano Deore shifter"
+    ],
+    "gears": {
+      "front": 3,
+      "rear": 7
+    },
+    "seller_info": {
+      "name": "John Doe",
+      "email": "john@gmail.com",
+      "phone": "617-555-5555"
+    },
+    "images": ["a1.jpg", "a2.jpg", "a3.jpg"],
+    "is_featured": false,
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "6",
+    "owner": "5",
+    "name": "Mendiz 57",
+    "type": "Road",
+    "description": "This is a beautiful classic road bike in perfect condition.",
+    "location": {
+      "street": "120 Tremont Street",
+      "city": "Boston",
+      "state": "MA",
+      "zipcode": "02108"
+    },
+    "price": 170,
+    "weight": 6,
+    "size": 27,
+    "components": [
+      "v-brake",
+      "carbon fiber frame",
+      "Shimano Deore shifter"
+    ],
+    "gears": {
+      "front": 3,
+      "rear": 7
+    },
+    "seller_info": {
+      "name": "John Doe",
+      "email": "john@gmail.com",
+      "phone": "617-555-5555"
+    },
+    "images": ["a1.jpg", "a2.jpg", "a3.jpg"],
+    "is_featured": false,
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "7",
+    "owner": "6",
+    "name": "Mendiz 57",
+    "type": "Road",
+    "description": "This is a beautiful classic road bike in perfect condition.",
+    "location": {
+      "street": "120 Tremont Street",
+      "city": "Boston",
+      "state": "MA",
+      "zipcode": "02108"
+    },
+    "price": 170,
+    "weight": 6,
+    "size": 27,
+    "components": [
+      "v-brake",
+      "carbon fiber frame",
+      "Shimano Deore shifter"
+    ],
+    "gears": {
+      "front": 3,
+      "rear": 7
+    },
+    "seller_info": {
+      "name": "John Doe",
+      "email": "john@gmail.com",
+      "phone": "617-555-5555"
+    },
+    "images": ["a1.jpg", "a2.jpg", "a3.jpg"],
+    "is_featured": false,
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "8",
+    "owner": "7",
+    "name": "Mendiz 57",
+    "type": "Road",
+    "description": "This is a beautiful classic road bike in perfect condition.",
+    "location": {
+      "street": "120 Tremont Street",
+      "city": "Boston",
+      "state": "MA",
+      "zipcode": "02108"
+    },
+    "price": 170,
+    "weight": 6,
+    "size": 27,
+    "components": [
+      "v-brake",
+      "carbon fiber frame",
+      "Shimano Deore shifter"
+    ],
+    "gears": {
+      "front": 3,
+      "rear": 7
+    },
+    "seller_info": {
+      "name": "John Doe",
+      "email": "john@gmail.com",
+      "phone": "617-555-5555"
+    },
+    "images": ["a1.jpg", "a2.jpg", "a3.jpg"],
+    "is_featured": false,
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "9",
+    "owner": "9",
+    "name": "Mendiz 57",
+    "type": "Road",
+    "description": "This is a beautiful classic road bike in perfect condition.",
+    "location": {
+      "street": "120 Tremont Street",
+      "city": "Boston",
+      "state": "MA",
+      "zipcode": "02108"
+    },
+    "price": 170,
+    "weight": 6,
+    "size": 27,
+    "components": [
+      "v-brake",
+      "carbon fiber frame",
+      "Shimano Deore shifter"
+    ],
+    "gears": {
+      "front": 3,
+      "rear": 7
+    },
+    "seller_info": {
+      "name": "John Doe",
+      "email": "john@gmail.com",
+      "phone": "617-555-5555"
+    },
+    "images": ["a1.jpg", "a2.jpg", "a3.jpg"],
+    "is_featured": false,
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  },
+  {
+    "_id": "10",
+    "owner": "10",
+    "name": "Mendiz 57",
+    "type": "Road",
+    "description": "This is a beautiful classic road bike in perfect condition.",
+    "location": {
+      "street": "120 Tremont Street",
+      "city": "Boston",
+      "state": "MA",
+      "zipcode": "02108"
+    },
+    "price": 170,
+    "weight": 6,
+    "size": 27,
+    "components": [
+      "v-brake",
+      "carbon fiber frame",
+      "Shimano Deore shifter"
+    ],
+    "gears": {
+      "front": 3,
+      "rear": 7
+    },
+    "seller_info": {
+      "name": "John Doe",
+      "email": "john@gmail.com",
+      "phone": "617-555-5555"
+    },
+    "images": ["a1.jpg", "a2.jpg", "a3.jpg"],
+    "is_featured": false,
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  }
+]

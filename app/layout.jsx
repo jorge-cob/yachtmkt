@@ -4,9 +4,9 @@ import Footer from '@/components/Footer';
 import '@/assets/styles/globals.css';
 
 export const metadata = {
-  title: 'Electronic Freebies | Re-place your replacement parts',
-  description: 'Find or share electronic spare parts',
-  keywords: 'spare parts, electronic spare parts, freebies',
+  title: 'Bik3mkt',
+  description: 'Find or offer a bike',
+  keywords: 'bikes, bike, free, bikes, free, free bikes'
 };
 
 const MainLayout = ({ children }) => {

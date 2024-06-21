@@ -2,12 +2,12 @@
 
 import React from 'react'
 
-const FreebiePage = () => {
+const BikePage = () => {
   return (
     <div>
-      Freebie Page
+      Bike Page
     </div>
   );
 };
 
-export default FreebiePage;
+export default BikePage;

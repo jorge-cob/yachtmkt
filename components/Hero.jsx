@@ -10,10 +10,10 @@ const Hero = () => {
           <h1
             className="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl"
           >
-            Find The Spare Part You Need
+            Find The Bike You Need
           </h1>
           <p className="my-4 text-xl text-white">
-            Discover spare parts that may fit into your project
+            Browse Bikes
           </p>
         </div>
         <form
@@ -29,19 +29,19 @@ const Hero = () => {
             />
           </div>
           <div className="w-full md:w-2/5 md:pl-2">
-            <label htmlFor="part-type" className="sr-only">Part Type</label>
+            <label htmlFor="bike-type" className="sr-only">Bike Type</label>
             <select
-              id="part-type"
+              id="bike-type"
               className="w-full px-4 py-3 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring focus:ring-blue-500"
             >
               <option value="All">All</option>
-              <option value="Motor">Motor</option>
-              <option value="Speaker">Speaker</option>
-              <option value="Bolts">Bolts</option>
-              <option value="Sensors">Sensors</option>
-              <option value="Power Supply">Power Supply</option>
-              <option value="Wires">Wires</option>
-              <option value="Lights">Lights</option>
+              <option value="MTB">MTB</option>
+              <option value="Gravel">Gravel</option>
+              <option value="Road">Road</option>
+              <option value="BMX">BMX</option>
+              <option value="Cruising">Cruising</option>
+              <option value="Vintage">Vintage</option>
+              <option value="Kids">Kids</option>
               <option value="Other">Other</option>
             </select>
           </div>
