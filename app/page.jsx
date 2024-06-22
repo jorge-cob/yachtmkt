@@ -1,13 +1,14 @@
 import React from 'react';
 import Hero from '@/components/Hero';
 import InfoBoxes from '@/components/InfoBoxes';
-import Footer from '@/components/Footer';
+import HomeBikes from '@/components/HomeBikes';
 
 const HomePage = () => {
   return (
     <>
       <Hero />
       <InfoBoxes />
+      <HomeBikes />
     </>
   );
 };

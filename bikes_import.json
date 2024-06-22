@@ -1,6 +1,5 @@
 [
   {
-    "_id": "1",
     "owner": "1",
     "name": "Mendiz 57",
     "type": "Road",
@@ -35,7 +34,6 @@
     "updatedAt": "2024-01-01T00:00:00.000Z"
   },
   {
-    "_id": "2",
     "owner": "1",
     "name": "Specialized Stumpjumper 29",
     "type": "MTB",
@@ -70,7 +68,6 @@
     "updatedAt": "2024-01-01T00:00:00.000Z"
   }, 
   {
-    "_id": "3",
     "owner": "1",
     "name": "Peugeot pf10",
     "type": "Road",
@@ -105,7 +102,6 @@
     "updatedAt": "2024-01-01T00:00:00.000Z"
   },
   {
-    "_id": "4",
     "owner": "2",
     "name": "Mendiz 57",
     "type": "Road",
@@ -140,7 +136,6 @@
     "updatedAt": "2024-01-01T00:00:00.000Z"
   },
   {
-    "_id": "5",
     "owner": "3",
     "name": "Mendiz 57",
     "type": "Road",
@@ -175,7 +170,6 @@
     "updatedAt": "2024-01-01T00:00:00.000Z"
   },
   {
-    "_id": "6",
     "owner": "5",
     "name": "Mendiz 57",
     "type": "Road",
@@ -210,7 +204,6 @@
     "updatedAt": "2024-01-01T00:00:00.000Z"
   },
   {
-    "_id": "7",
     "owner": "6",
     "name": "Mendiz 57",
     "type": "Road",
@@ -245,7 +238,6 @@
     "updatedAt": "2024-01-01T00:00:00.000Z"
   },
   {
-    "_id": "8",
     "owner": "7",
     "name": "Mendiz 57",
     "type": "Road",
@@ -280,7 +272,6 @@
     "updatedAt": "2024-01-01T00:00:00.000Z"
   },
   {
-    "_id": "9",
     "owner": "9",
     "name": "Mendiz 57",
     "type": "Road",
@@ -315,7 +306,6 @@
     "updatedAt": "2024-01-01T00:00:00.000Z"
   },
   {
-    "_id": "10",
     "owner": "10",
     "name": "Mendiz 57",
     "type": "Road",
