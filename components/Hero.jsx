@@ -10,10 +10,10 @@ const Hero = () => {
           <h1
             className="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl"
           >
-            Find The Bike You Need
+            Find The Yacht You Need
           </h1>
           <p className="my-4 text-xl text-white">
-            Browse Bikes
+            Browse Yachts
           </p>
         </div>
         <form
@@ -29,9 +29,9 @@ const Hero = () => {
             />
           </div>
           <div className="w-full md:w-2/5 md:pl-2">
-            <label htmlFor="bike-type" className="sr-only">Bike Type</label>
+            <label htmlFor="yacht-type" className="sr-only">Yacht Type</label>
             <select
-              id="bike-type"
+              id="yacht-type"
               className="w-full px-4 py-3 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring focus:ring-blue-500"
             >
               <option value="All">All</option>

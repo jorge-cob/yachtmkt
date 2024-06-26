@@ -1,19 +1,31 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from '@/assets/images/logo-white.png';
 import profileDefault from '@/assets/images/profile.png';
 import { FaGoogle } from 'react-icons/fa';
+import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 
 const Navbar = () => {
 
+  const { data: session } = useSession();
+  const profileImage = session?.user?.image;
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [providers, setProviders] = useState(false);
 
   const pathname = usePathname();
+
+  useEffect(() => {providers
+    const setAuthProviders = async () => {
+      const res = await getProviders();
+      setProviders(res);
+    }
+    setAuthProviders();
+  }, []);
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
@@ -56,11 +68,11 @@ const Navbar = () => {
               <Image
                 className="h-10 w-auto"
                 src={logo}
-                alt="Bik3mkt"
+                alt="Yachtmkt"
               />
 
               <span className="hidden md:block text-white text-2xl font-bold ml-2"
-                >Bik3mkt</span
+                >Yachtmkt</span
               >
             </Link>
             {/* <!-- Desktop Menu Hidden below md screens --> */}
@@ -73,18 +85,18 @@ const Navbar = () => {
                   >Home</Link
                 >
                 <Link
-                  href="/bikes"
-                  className={ `${pathname === '/bikes' ? 'bg-black' : ''} 
+                  href="/yachts"
+                  className={ `${pathname === '/yachts' ? 'bg-black' : ''} 
                   text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2` }
-                  >Bikes</Link
+                  >Yachts</Link
                 >
-                { isLoggedIn && (
+                { session && (
                   <Link
-                    href="/bikes/add"
-                    className={ `${pathname === '/bikes/add' ? 'bg-black' : ''} 
+                    href="/yachts/add"
+                    className={ `${pathname === '/yachts/add' ? 'bg-black' : ''} 
                     text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2` }
                   >
-                      Add Bike
+                      Add Yacht
                   </Link>
                 )}
               </div>
@@ -94,15 +106,20 @@ const Navbar = () => {
           {/* <!-- Right Side Menu (Logged Out) --> */}
 
           {
-            !isLoggedIn && (
+            !session && (
               <div className="hidden md:block md:ml-6">
                 <div className="flex items-center">
-                  <button
-                    className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                  >
-                    <FaGoogle className='text-white mr-2' />
-                    <span>Login or Register</span>
-                  </button>
+                  { providers && Object.values(providers).map((provider, index) => (
+                    <button
+                      onClick={() => signIn(provider.id)}
+                      className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                      key={index}
+                    >
+                      <FaGoogle className='text-white mr-2' />
+                      <span>Login or Register</span>
+                    </button>
+                  ))}
+                 
                 </div>
               </div>
             )
@@ -110,7 +127,7 @@ const Navbar = () => {
     
           {/* <!-- Right Side Menu (Logged In) --> */}
           {
-            isLoggedIn && (
+            session && (
               <div
             className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0"
           >
@@ -158,8 +175,10 @@ const Navbar = () => {
                   <span className="sr-only">Open user menu</span>
                   <Image
                     className="h-8 w-8 rounded-full"
-                    src={profileDefault}
+                    src={profileImage || profileDefault}
                     alt=""
+                    width={40}
+                    height={40}
                   />
                 </button>
               </div>
@@ -181,24 +200,34 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-0"
+                      onClick={() => {
+                        setIsProfileMenuOpen(false)
+                      }}
                       >Your Profile</Link
                     >
                     <Link
-                      href="/bikes/saved"
+                      href="/yachts/saved"
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-2"
-                      >Saved Bikes</Link
+                      onClick={() => {
+                        setIsProfileMenuOpen(false)
+                      }}
+                      >Saved Yachts</Link
                     >
                     <button
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-2"
-                      >
-                        Sign Out
-                      </button>
+                      onClick={() => {
+                        setIsProfileMenuOpen(false);;
+                        signOut();
+                      }}
+                    >
+                      Sign Out
+                    </button>
                   </div>
                 )
               }
@@ -219,28 +248,30 @@ const Navbar = () => {
               >Home</Link
             >
             <Link
-              href="/bikes"
-              className={`${pathname === '/bikes' ? 'bg-gray-900' : ''} text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium`}
-              >Bikes</Link
+              href="/yachts"
+              className={`${pathname === '/yachts' ? 'bg-gray-900' : ''} text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium`}
+              >Yachts</Link
             >
             {
-              isLoggedIn && (
+              session && (
                 <Link
-                  href="/bikes/add"
-                  className={`${pathname === '/bikes/add' ? 'bg-gray-900' : ''} text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium`}
+                  href="/yachts/add"
+                  className={`${pathname === '/yachts/add' ? 'bg-gray-900' : ''} text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium`}
                 >
-                  Add Bike
+                  Add Yacht
                 </Link>
               )
             }
-            {
-              !isLoggedIn && (
+            { !session && providers && Object.values(providers).map((provider, index) => (
                 <button
+                  onClick={() => signIn(provider.id)}
                   className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-4"
+                  key={index}
                 >
                   <span>Login or Register</span>
                 </button>
-              )
+              ))
+            
             }
           </div>
         </div>

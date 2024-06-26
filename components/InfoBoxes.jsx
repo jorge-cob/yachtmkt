@@ -7,28 +7,27 @@ const infoBoxes = () => {
     <div className="container-xl lg:container m-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg">
         <InfoBox
-          heading='For Sellers'
+          heading='For Renters'
           backgroundColor='bg-gray-100'
           buttonInfo={{
-            text: 'Browse bikes',
-            link: '/bikes',
+            text: 'Browse yachts',
+            link: '/yachts',
             backgroundColor: 'bg-black',
           }}
-          
         >
-          Find your perfect bike. Bookmark them and contact owners.
+          Find your perfect yacht. Bookmark them and contact owners.
         </InfoBox>
 
         <InfoBox
-          heading='For Buyers'
+          heading='For Owners'
           backgroundColor='bg-blue-100'
           buttonInfo={{
-            text: 'Add Bike',
-            link: '/bikes/add',
+            text: 'Add Yacht',
+            link: '/yachts/add',
             backgroundColor: 'bg-blue-500',
           }}
         >
-          List your bike
+          List your yacht
         </InfoBox>
       </div>
     </div>

@@ -1,22 +1,13 @@
 import React from 'react';
-import BikeCard from '@/components/BikeCard';
+import YachtCard from '@/components/YachtCard';
 import Link from 'next/link';
+import { fetchYachts} from '@/utils/request';
 
-async function fetchBikes() {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/bikes`);
-    if (!res.ok) throw new Error('Failed to fetch data');
-    const data = res.json();
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-}
 
-const HomeBikes = async () => {
+const HomeYachts = async () => {
 
-  const bikes = await fetchBikes();
-  const recentBikes = bikes
+  const yachts = await fetchYachts();
+  const recentYachts = yachts
     .sort(() => Math.random() - Math.random())
     .slice(0, 3); 
   return (
@@ -24,28 +15,28 @@ const HomeBikes = async () => {
       <section className="px-4 py-6">
         <div className="container-xl lg:container m-auto">
           <h2 className="text-3xl font-bold text-blue-500 mb-6 text-center">
-            Recent Bikes
+            Recent Yachts
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {recentBikes === 0 ? ( 
-              <p>No bikes found</p> 
+            {recentYachts === 0 ? ( 
+              <p>No yachts found</p> 
               ) : (
-                recentBikes.map((recentBike) => (
-              <BikeCard key={recentBike._id} bike={recentBike} />
+                recentYachts.map((recentYacht) => (
+              <YachtCard key={recentYacht._id} yacht={recentYacht} />
             )))}
           </div>
         </div>
       </section>
       <section className="m-auto max-w-lg my-10 px-6">
         <Link
-          href="/bikes"
+          href="/yachts"
           className="block bg-black text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700"
         >
-          View All Bikes
+          View All Yachts
         </Link>
       </section>
     </>
   );
 };
 
-export default HomeBikes
+export default HomeYachts

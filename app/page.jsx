@@ -1,14 +1,14 @@
 import React from 'react';
 import Hero from '@/components/Hero';
 import InfoBoxes from '@/components/InfoBoxes';
-import HomeBikes from '@/components/HomeBikes';
+import HomeYachts from '@/components/HomeYachts';
 
 const HomePage = () => {
   return (
     <>
       <Hero />
       <InfoBoxes />
-      <HomeBikes />
+      <HomeYachts />
     </>
   );
 };

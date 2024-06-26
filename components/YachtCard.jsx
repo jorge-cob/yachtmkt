@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaBicycle, FaWeightHanging,FaRulerCombined, FaMapMarker } from 'react-icons/fa';
 
-const BikeCard = ({ bike }) => {
+const YachtCard = ({ yacht }) => {
   const {
     _id,
     name,
@@ -15,13 +15,13 @@ const BikeCard = ({ bike }) => {
     gears,
     images,
     color
-  } = bike;
+  } = yacht;
 
 
   return (
     <div className="rounded-xl shadow-md relative">
       <Image
-        src={`/images/bikes/${images[0]}`}
+        src={`/images/yachts/${images[0]}`}
         alt=""
         height={0}
         width={0}
@@ -64,7 +64,7 @@ const BikeCard = ({ bike }) => {
                   <span className="text-orange-700"> {location.city}  {location.state} </span>
                 </div>
                 <Link
-                  href={`/bikes/${_id}`}
+                  href={`/yachts/${_id}`}
                   className="h-[36px] bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-center text-sm"
                 >
                   Details
@@ -75,4 +75,4 @@ const BikeCard = ({ bike }) => {
   )
 }
 
-export default BikeCard
+export default YachtCard

@@ -1,14 +1,14 @@
 import connectDB from "@/config/database";
-import Bike from "@/models/Bike";
+import Yacht from "@/models/Yacht";
 
-// GET /api/properties
+// GET /api/yachts
 export const GET = async (request) => {
   try {
     await connectDB();
 
-    const bikes = await Bike.find({}); 
+    const yachts = await Yacht.find({}); 
 
-    return new Response(JSON.stringify(bikes), { status: 200 });
+    return new Response(JSON.stringify(yachts), { status: 200 });
   } catch (error) {
     console.log(error);
     return new Response('Something went wrong', { status: 500 });
