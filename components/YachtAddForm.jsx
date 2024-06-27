@@ -96,7 +96,7 @@ const YachtAddForm = () => {
   };
 
   return mounted && 
-    <form>
+    <form action="/api/yachts" method="POST" encType='multipart/form-data'>
       <h2 className="text-3xl text-center font-semibold mb-6">
         Add Yacht
       </h2>
@@ -229,14 +229,14 @@ const YachtAddForm = () => {
         </div>
         <div className="w-full sm:w-1/3 pl-2">
           <label
-            htmlFor="square_feet"
+            htmlFor="feet"
             className="block text-gray-700 font-bold mb-2"
             >Feet</label
           >
           <input
             type="number"
-            id="square_feet"
-            name="square_feet"
+            id="feet"
+            name="feet"
             className="border rounded w-full py-2 px-3"
             required
             value={fields.feet}
@@ -451,7 +451,7 @@ const YachtAddForm = () => {
         <input
           type="text"
           id="seller_name"
-          name="seller_info.name."
+          name="seller_info.name"
           className="border rounded w-full py-2 px-3"
           placeholder="Name"
           value={fields.seller_info.name}
@@ -504,6 +504,7 @@ const YachtAddForm = () => {
           accept="image/*"
           multiple
           onChange={handleImageChange}
+          required
         />
       </div>
 

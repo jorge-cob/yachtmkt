@@ -7,7 +7,7 @@ const YachtHeaderImage = ({ image }) => {
       <div className="container-xl m-auto">
         <div className="grid grid-cols-1">
           <Image
-            src={`/images/yachts/${image}`}
+            src={image}
             alt=""
             className="object-cover h-[400px] w-full"
             width="0"

@@ -5,7 +5,7 @@ async function fetchYachts() {
   try {
     // Handle the case where the domain is not available yet
     if (!apiDomain) return [];
-    const res = await fetch(`${apiDomain}/yachts`);
+    const res = await fetch(`${apiDomain}/yachts`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to fetch data');
     const data = res.json();
     return data;
