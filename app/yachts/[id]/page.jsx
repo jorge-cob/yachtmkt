@@ -8,6 +8,9 @@ import YachtDetails from '@/components/YachtDetails';
 import YachtImages from '@/components/YachtImages';
 import Spinner from '@/components/Spinner';
 import { FaArrowLeft } from 'react-icons/fa';
+import BookmarkButton from '@/components/BookmarkButton';
+import ShareButtons from '@/components/ShareButton';
+import YachtContactForm from '@/components/YachtContactForm';
 
 const YachtPage = () => {
   const { id } = useParams();
@@ -62,7 +65,11 @@ const YachtPage = () => {
             <div className='container m-auto py-10 px-6'>
               <div className='grid grid-cols-1 md:grid-cols-70/30 w-full gap-6'>
                 <YachtDetails yacht={yacht} />
-                
+                <aside className='space-y-4'>
+                    <BookmarkButton yacht={yacht} />
+                    <ShareButtons yacht={yacht} />
+                    <YachtContactForm yacht={yacht} />
+                </aside>              
               </div>
             </div>
           </section>
