@@ -1,11 +1,11 @@
 const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN || null;
 
 // Fetch all yachts
-async function fetchYachts() {
+async function fetchYachts({ showFeatured = false } = {}) {
   try {
     // Handle the case where the domain is not available yet
     if (!apiDomain) return [];
-    const res = await fetch(`${apiDomain}/yachts`, { cache: 'no-store' });
+    const res = await fetch(`${apiDomain}/yachts${showFeatured ? '/featured' : ''}`, { cache: 'no-store' });
     if (!res.ok) throw new Error('Failed to fetch data');
     const data = res.json();
     return data;
