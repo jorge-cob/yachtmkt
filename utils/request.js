@@ -5,7 +5,10 @@ async function fetchYachts({ showFeatured = false } = {}) {
   try {
     // Handle the case where the domain is not available yet
     if (!apiDomain) return [];
-    const res = await fetch(`${apiDomain}/yachts${showFeatured ? '/featured' : ''}`, { cache: 'no-store' });
+    const res = await fetch(
+      `${apiDomain}/yachts${showFeatured ? '/featured' : ''}`,
+      { cache: 'no-store' }
+    );
     if (!res.ok) throw new Error('Failed to fetch data');
     const data = res.json();
     return data;

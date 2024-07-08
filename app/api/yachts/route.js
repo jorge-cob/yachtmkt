@@ -1,6 +1,6 @@
-import connectDB from "@/config/database";
-import Yacht from "@/models/Yacht";
-import { getSessionUser } from "@/utils/getSessionUser";
+import connectDB from '@/config/database';
+import Yacht from '@/models/Yacht';
+import { getSessionUser } from '@/utils/getSessionUser';
 import cloudinary from '@/config/cloudinary';
 
 // GET /api/yachts
@@ -14,23 +14,23 @@ export const GET = async (request) => {
     const skip = (page - 1) * pageSize;
 
     const total = await Yacht.countDocuments({});
-    const yachts = await Yacht.find({}).skip(skip).limit(pageSize); 
+    const yachts = await Yacht.find({}).skip(skip).limit(pageSize);
 
     const result = {
       total,
-      yachts
-    }
+      yachts,
+    };
 
-    return new Response(JSON.stringify(result), { status: 200 });
+    return new Response(JSON.stringify(result), {
+      status: 200,
+    });
   } catch (error) {
     console.log(error);
-    return new Response('Something went wrong', { status: 500 });
+    return new Response('Something Went Wrong', { status: 500 });
   }
 };
 
-// POST /api/yachts
 export const POST = async (request) => {
-
   try {
     await connectDB();
 
@@ -46,7 +46,9 @@ export const POST = async (request) => {
 
     // Access all values from amenities and images
     const amenities = formData.getAll('amenities');
-    const images = formData.getAll('images').filter((image) => image.name !== '');
+    const images = formData
+      .getAll('images')
+      .filter((image) => image.name !== '');
 
     // Create yachtData object for database
     const yachtData = {
@@ -61,12 +63,12 @@ export const POST = async (request) => {
       },
       beds: formData.get('beds'),
       baths: formData.get('baths'),
-      feet: formData.get('feet'),
+      square_feet: formData.get('square_feet'),
       amenities,
       rates: {
         weekly: formData.get('rates.weekly'),
         monthly: formData.get('rates.monthly'),
-        daily: formData.get('rates.daily'),
+        nightly: formData.get('rates.nightly.'),
       },
       seller_info: {
         name: formData.get('seller_info.name'),
@@ -74,10 +76,9 @@ export const POST = async (request) => {
         phone: formData.get('seller_info.phone'),
       },
       owner: userId,
-      //images
     };
 
-    //upload image(s) to cloudinary
+    // Upload image(s) to Cloudinary
     const imageUploadPromises = [];
 
     for (const image of images) {
@@ -85,21 +86,21 @@ export const POST = async (request) => {
       const imageArray = Array.from(new Uint8Array(imageBuffer));
       const imageData = Buffer.from(imageArray);
 
-      // Convert the image data to a base64
+      // Convert the image data to base64
       const imageBase64 = imageData.toString('base64');
 
       // Make request to upload to Cloudinary
       const result = await cloudinary.uploader.upload(
-        `data:image/png;base64,${imageBase64}`, {
-          folder: 'yachtmkt',
+        `data:image/png;base64,${imageBase64}`,
+        {
+          folder: 'yachtpulse',
         }
       );
 
-      imageUploadPromises.push(result.secure_url); 
+      imageUploadPromises.push(result.secure_url);
 
-      // Wait for all images to be uploaded
+      // Wait for all images to upload
       const uploadedImages = await Promise.all(imageUploadPromises);
-
       // Add uploaded images to the yachtData object
       yachtData.images = uploadedImages;
     }
@@ -107,13 +108,14 @@ export const POST = async (request) => {
     const newYacht = new Yacht(yachtData);
     await newYacht.save();
 
-    return Response.redirect(`${process.env.NEXTAUTH_URL}/yachts/${newYacht._id}`);
-    // return new Response(JSON.stringify({message: 'Success'}), { status: 200 });
+    return Response.redirect(
+      `${process.env.NEXTAUTH_URL}/yachts/${newYacht._id}`
+    );
 
+    // return new Response(JSON.stringify({ message: 'Success' }), {
+    //   status: 200,
+    // });
   } catch (error) {
-    console.log('error', error);
-    return new Response('Failed to add Yacht', { status: 500 });
+    return new Response('Failed to add yacht', { status: 500 });
   }
-
-
-}
+};

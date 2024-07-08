@@ -34,7 +34,6 @@ const Yachts = () => {
   }, [page, pageSize]);
 
   // Sort yachts by date
-  yachts.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   const handlePageChange = (newPage) => {
     setPage(newPage);

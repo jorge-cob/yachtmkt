@@ -7,7 +7,7 @@ import { GlobalProvider } from '@/context/GlobalContext';
 import '@/assets/styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'photoswipe/dist/photoswipe.css';
-
+export const dynamic = "force-dynamic";
 export const metadata = {
   title: 'Yachtmkt',
   description: 'Find or offer a yacht',

@@ -1,6 +1,6 @@
 import React from 'react'
 import {fetchYachts} from '@/utils/request'
-import FeaturedYachtCard from './FeaturedYachtCard';
+import FeaturedYachtCard from '@/components/FeaturedYachtCard';
 
 const FeaturedYachts = async () => {
   const yachts = await fetchYachts({ 

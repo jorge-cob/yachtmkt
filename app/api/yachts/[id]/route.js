@@ -2,6 +2,8 @@ import connectDB from "@/config/database";
 import Yacht from "@/models/Yacht";
 import { getSessionUser } from "@/utils/getSessionUser";
 
+export const dynamic = 'force-dynamic';
+
 // GET /api/yachts/:id
 export const GET = async (request, { params }) => {
   try {
