@@ -3,5 +3,26 @@
   "tailwindCSS.emmetCompletions": true,
   "editor.quickSuggestions": {
     "strings": true
+  },
+  "files.associations": {
+    "iostream": "cpp",
+    "*.tcc": "cpp",
+    "cctype": "cpp",
+    "clocale": "cpp",
+    "compare": "cpp",
+    "concepts": "cpp",
+    "cstdint": "cpp",
+    "cwchar": "cpp",
+    "string": "cpp",
+    "exception": "cpp",
+    "system_error": "cpp",
+    "type_traits": "cpp",
+    "iosfwd": "cpp",
+    "istream": "cpp",
+    "new": "cpp",
+    "ostream": "cpp",
+    "stdexcept": "cpp",
+    "streambuf": "cpp",
+    "typeinfo": "cpp"
   }
 }

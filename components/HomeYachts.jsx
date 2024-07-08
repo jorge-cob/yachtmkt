@@ -6,8 +6,8 @@ import { fetchYachts} from '@/utils/request';
 
 const HomeYachts = async () => {
 
-  const yachts = await fetchYachts();
-  const recentYachts = yachts
+  const data = await fetchYachts();
+  const recentYachts = data.yachts
     .sort(() => Math.random() - Math.random())
     .slice(0, 3); 
   return (

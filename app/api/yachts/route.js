@@ -8,9 +8,20 @@ export const GET = async (request) => {
   try {
     await connectDB();
 
-    const yachts = await Yacht.find({}); 
+    const page = request.nextUrl.searchParams.get('page') || 1;
+    const pageSize = request.nextUrl.searchParams.get('pageSize') || 6;
 
-    return new Response(JSON.stringify(yachts), { status: 200 });
+    const skip = (page - 1) * pageSize;
+
+    const total = await Yacht.countDocuments({});
+    const yachts = await Yacht.find({}).skip(skip).limit(pageSize); 
+
+    const result = {
+      total,
+      yachts
+    }
+
+    return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {
     console.log(error);
     return new Response('Something went wrong', { status: 500 });
