@@ -1,47 +1,22 @@
-'use client';
 
-import React, { useState, useEffect } from 'react';
 import YachtCard from './YachtCard';
 import Spinner from './Spinner';
 import Pagination from './Pagination';
+import { headers } from 'next/headers';
 
 
-const Yachts = () => {
-  
-  const [yachts, setYachts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(6);
-  const [totalItems, setTotalItems] = useState(0);
-
-  useEffect(() => {
-    const fetchYachts = async() => {
-      try {
-        const res = await fetch(`/api/yachts?page=${page}&pageSize=${pageSize}`);
-        if(!res.ok) throw new Error('Failed to fetch data');
-        const data = await res.json();
-        setYachts(data.yachts);
-        setTotalItems(data.total);
-        
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    }
-      
-    fetchYachts();
-  }, [page, pageSize]);
-
-  // Sort yachts by date
-
-  const handlePageChange = (newPage) => {
-    setPage(newPage);
-  } 
+export default async function Yachts ({
+  searchParams
+}) {
+  const page = typeof searchParams.page === "string" ? Number(searchParams.page) :  1;
+  const pageSize =  typeof searchParams.pageSize === "string" ? Number(searchParams.pageSize) : 6;
+  const host = headers().get("host");
+  const protocal = process?.env.NODE_ENV==="development"?"http":"https"
+  let {yachts, total} = await fetch(`${protocal}://${host}/api/yachts?page=${page}&pageSize=${pageSize}`, { cache: "no-store" }).then((res) => res.json()).then((data) => data);
 
   return (
     <>
-    { loading ? <Spinner loading={loading} /> : (
+    {(
       <section className="px-4 py-6">
       <div className="container-xl lg:container m-auto px-4 py-6">
         { yachts.length === 0 ? ( 
@@ -53,14 +28,10 @@ const Yachts = () => {
             ))}
           </div>
         )}
-        <Pagination page={page} pageSize={pageSize} totalItems={totalItems} onPageChange={handlePageChange} />
+        <Pagination page={page} pageSize={pageSize} totalItems={total} />
       </div>
     </section>
     )}
     </>
   )
-    
-  
 }
-
-export default Yachts
