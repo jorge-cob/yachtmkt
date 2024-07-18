@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import YachtCard from './YachtCard';
-import Spinner from './Spinner';
 import Pagination from './Pagination';
 import { headers } from 'next/headers';
+import { PaginationProps, YachtProps } from '@/types';
 
-
-export default async function Yachts ({
-  searchParams
-}) {
+const Yachts: FC<{searchParams: PaginationProps}> = async ({ searchParams }) => {
   const page = typeof searchParams.page === "string" ? Number(searchParams.page) :  1;
   const pageSize =  typeof searchParams.pageSize === "string" ? Number(searchParams.pageSize) : 6;
   const host = headers().get("host");
@@ -22,17 +19,17 @@ export default async function Yachts ({
           <p>No yachts found</p> 
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {yachts.map((yacht) => (
-              <React.Fragment key={yacht._id}>
-                <YachtCard yacht={yacht} />
-              </React.Fragment>
+            {yachts.map((yacht: YachtProps) => (
+              <YachtCard key={yacht._id} yacht={yacht} />
             ))}
           </div>
         )}
-        <Pagination page={page} pageSize={pageSize} totalItems={total} />
       </div>
+      <Pagination total={total} page={page} pageSize={pageSize} />
     </section>
     )}
     </>
-  )
-}
+  );
+};
+
+export default Yachts;
