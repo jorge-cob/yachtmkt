@@ -3,8 +3,31 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaBath, FaMoneyBill,FaRulerCombined, FaMapMarker, FaBed } from 'react-icons/fa';
 
-const YachtCard = ({ yacht }) => {
+interface YachtProps {
+  owner: string;
+  name: string;
+  type: string;
+  description?: string;
+  location: {
+    street?: string;
+    city?: string;
+    state?: string;
+    zipcode?: string;
+  };
+  beds: number;
+  baths: number;
+  feet: number;
+  amenities: string[];
+  rates: {
+    daily?: number;
+    weekly?: number;
+    monthly?: number;
+  };
+  images: string[]; // Assuming images is an array of string paths
+  is_featured: boolean;
+}
 
+const YachtCard: React.FC<{yacht: YachtProps}>  = ({yacht}) => {
   const getRateDisplay = () => {
     const { rates } = yacht;
 
@@ -16,6 +39,7 @@ const YachtCard = ({ yacht }) => {
       return `${rates.daily.toLocaleString()}/night`;
     }
   };
+
   return (
     <div className="rounded-xl shadow-md relative">
       <Image
@@ -94,4 +118,4 @@ const YachtCard = ({ yacht }) => {
   )
 }
 
-export default YachtCard
+export default YachtCard;

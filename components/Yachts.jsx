@@ -1,4 +1,4 @@
-
+import React from 'react';
 import YachtCard from './YachtCard';
 import Spinner from './Spinner';
 import Pagination from './Pagination';
@@ -13,7 +13,6 @@ export default async function Yachts ({
   const host = headers().get("host");
   const protocal = process?.env.NODE_ENV==="development"?"http":"https"
   let {yachts, total} = await fetch(`${protocal}://${host}/api/yachts?page=${page}&pageSize=${pageSize}`, { cache: "no-store" }).then((res) => res.json()).then((data) => data);
-
   return (
     <>
     {(
@@ -24,7 +23,9 @@ export default async function Yachts ({
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {yachts.map((yacht) => (
-              <YachtCard key={yacht._id} yacht={yacht} />
+              <React.Fragment key={yacht._id}>
+                <YachtCard yacht={yacht} />
+              </React.Fragment>
             ))}
           </div>
         )}
