@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FaBath, FaMoneyBill,FaRulerCombined, FaMapMarker, FaBed } from 'react-icons/fa';
 
 interface YachtProps {
+  _id: string;
   owner: string;
   name: string;
   type: string;
