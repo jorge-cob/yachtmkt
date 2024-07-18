@@ -6,8 +6,9 @@ import {
   FaCheck,
   FaMapMarker,
 } from 'react-icons/fa';
+import { YachtProps } from '@/types';
 
-const YachtDetails = ({ yacht }) => {
+const YachtDetails: React.FC<{yacht: YachtProps}> = ({ yacht }) => {
   return (
     <main>
       <div className='bg-white p-6 rounded-lg shadow-md text-center md:text-left'>

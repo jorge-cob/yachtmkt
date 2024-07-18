@@ -8,7 +8,7 @@ const override = {
   margin: '100px auto',
 };
 
-const Spinner = ({ loading }) => {
+const Spinner: React.FC<{ loading: boolean }> = ({ loading = true }) => {
   return (
     <ClipLoader
         color='#3b82f6'
