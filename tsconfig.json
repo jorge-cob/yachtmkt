@@ -32,7 +32,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "components/YachtCard.jsx", "app/profile/page.jsx"  ],
+, "components/YachtCard.jsx", "app/profile/page.jsx", "components/Navbar.jsx", "components/Navbar.jsx"  ],
   "exclude": [
     "node_modules"
   ]

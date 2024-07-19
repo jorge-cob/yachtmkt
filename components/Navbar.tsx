@@ -1,4 +1,5 @@
 'use client';
+
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
@@ -6,17 +7,18 @@ import Link from 'next/link';
 import logo from '@/assets/images/logo-white.png';
 import profileDefault from '@/assets/images/profile.png';
 import { FaGoogle } from 'react-icons/fa';
-import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
+import { signIn, signOut, useSession, getProviders, LiteralUnion,ClientSafeProvider } from 'next-auth/react';
 import UnreadMessageCount from './UnreadMessageCount';
+import { BuiltInProviderType } from "next-auth/providers";
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const { data: session } = useSession();
   const profileImage = session?.user?.image;
 
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const [providers, setProviders] = useState(null);
-
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState<boolean>(false);
+  const [providers, setProviders] = useState<Record<
+  LiteralUnion<BuiltInProviderType, string>,ClientSafeProvider > | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -27,7 +29,6 @@ const Navbar = () => {
 
     setAuthProviders();
   }, []);
-
   return (
     <nav className='bg-blue-700 border-b border-blue-500'>
       <div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
@@ -180,13 +181,13 @@ const Navbar = () => {
                     role='menu'
                     aria-orientation='vertical'
                     aria-labelledby='user-menu-button'
-                    tabIndex='-1'
+                    tabIndex={-1}
                   >
                     <Link
                       href='/profile'
                       className='block px-4 py-2 text-sm text-gray-700'
                       role='menuitem'
-                      tabIndex='-1'
+                      tabIndex={-1}
                       id='user-menu-item-0'
                       onClick={() => {
                         setIsProfileMenuOpen(false);
@@ -198,7 +199,7 @@ const Navbar = () => {
                       href='/yachts/saved'
                       className='block px-4 py-2 text-sm text-gray-700'
                       role='menuitem'
-                      tabIndex='-1'
+                      tabIndex={-1}
                       id='user-menu-item-2'
                       onClick={() => {
                         setIsProfileMenuOpen(false);
@@ -213,7 +214,7 @@ const Navbar = () => {
                       }}
                       className='block px-4 py-2 text-sm text-gray-700'
                       role='menuitem'
-                      tabIndex='-1'
+                      tabIndex={-1}
                       id='user-menu-item-2'
                     >
                       Sign Out
