@@ -27,3 +27,7 @@ export type PaginationProps = {
   pageSize: number;
   total: number;
 }
+
+export type ImageProps = {
+  name: string;
+}

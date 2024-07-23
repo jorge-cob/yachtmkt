@@ -2,15 +2,15 @@ import connectDB from '@/config/database';
 import Yacht from '@/models/Yacht';
 import { getSessionUser } from '@/utils/getSessionUser';
 import cloudinary from '@/config/cloudinary';
+import { NextRequest, NextResponse } from 'next/server'
 
 // GET /api/yachts
-export const GET = async (request) => {
+export async function GET(request: NextRequest) {
   try {
     await connectDB();
 
-    const page = request.nextUrl.searchParams.get('page') || 1;
-    const pageSize = request.nextUrl.searchParams.get('pageSize') || 6;
-
+    const page =  parseInt((request.nextUrl.searchParams.get('page') || '1'), 10);
+    const pageSize =  parseInt((request.nextUrl.searchParams.get('pageSize') || '6'), 10);
     const skip = (page - 1) * pageSize;
 
     const total = await Yacht.countDocuments({});
@@ -30,7 +30,8 @@ export const GET = async (request) => {
   }
 };
 
-export const POST = async (request) => {
+export const POST = async (request: NextRequest) => {
+
   try {
     await connectDB();
 
@@ -46,9 +47,9 @@ export const POST = async (request) => {
 
     // Access all values from amenities and images
     const amenities = formData.getAll('amenities');
-    const images = formData
-      .getAll('images')
-      .filter((image) => image.name !== '');
+  
+    const imageArray = formData.getAll('images') as File[];
+    const imagesFiles = Array.from(imageArray).filter((image: File) => image.name !== '');
 
     // Create yachtData object for database
     const yachtData = {
@@ -63,7 +64,7 @@ export const POST = async (request) => {
       },
       beds: formData.get('beds'),
       baths: formData.get('baths'),
-      square_feet: formData.get('square_feet'),
+      feet: formData.get('feet'),
       amenities,
       rates: {
         weekly: formData.get('rates.weekly'),
@@ -76,12 +77,13 @@ export const POST = async (request) => {
         phone: formData.get('seller_info.phone'),
       },
       owner: userId,
+      images: [] as string[],
     };
 
     // Upload image(s) to Cloudinary
     const imageUploadPromises = [];
 
-    for (const image of images) {
+    for (const image of imagesFiles) {
       const imageBuffer = await image.arrayBuffer();
       const imageArray = Array.from(new Uint8Array(imageBuffer));
       const imageData = Buffer.from(imageArray);
@@ -93,9 +95,11 @@ export const POST = async (request) => {
       const result = await cloudinary.uploader.upload(
         `data:image/png;base64,${imageBase64}`,
         {
-          folder: 'yachtpulse',
+          folder: 'yachtmkt',
         }
       );
+
+      console.log('image to cloudinary', result.secure_url)
 
       imageUploadPromises.push(result.secure_url);
 
@@ -116,6 +120,7 @@ export const POST = async (request) => {
     //   status: 200,
     // });
   } catch (error) {
+    console.log('error' , error);
     return new Response('Failed to add yacht', { status: 500 });
   }
 };

@@ -3,13 +3,16 @@ import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import { FaBookmark } from 'react-icons/fa';
+import { YachtProps } from '@/types';
 
-const BookmarkButton = ({ yacht }) => {
+
+
+const BookmarkButton: React.FC<{yacht : YachtProps}> = ({ yacht }) => {
   const { data: session } = useSession();
   const userId = session?.user?.id;
 
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [isBookmarked, setIsBookmarked] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     if (!userId) {
@@ -70,7 +73,6 @@ const BookmarkButton = ({ yacht }) => {
       toast.error('Something went wrong');
     }
   };
-
   if (loading) return <p className='text-center'>Loading...</p>;
 
   return isBookmarked ? (
