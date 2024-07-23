@@ -1,6 +1,35 @@
-import { Schema, model, models } from 'mongoose';
+import { Schema, model, Document, models } from 'mongoose';
 
-const YachtSchema = new Schema(
+interface Yacht extends Document {
+  owner: Schema.Types.ObjectId;
+  name: string;
+  type: string;
+  description?: string;
+  location: {
+    street?: string;
+    city?: string;
+    state?: string;
+    zipcode?: string;
+  };
+  beds: number;
+  baths: number;
+  feet: number;
+  amenities: string[];
+  rates: {
+    daily?: number;
+    weekly?: number;
+    monthly?: number;
+  };
+  seller_info: {
+    name?: string;
+    email?: string;
+    phone?: string;
+  };
+  images: string[];
+  is_featured: boolean;
+}
+
+const YachtSchema = new Schema<Yacht>(
   {
     owner: {
       type: Schema.Types.ObjectId,
@@ -86,6 +115,6 @@ const YachtSchema = new Schema(
   }
 );
 
-const Yacht = models.Yacht || model('Yacht', YachtSchema);
+const Yacht = models.Yacht || model<Document>('Yacht', YachtSchema);
 
 export default Yacht;
