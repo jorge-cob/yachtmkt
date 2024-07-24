@@ -3,20 +3,21 @@ import connectDB from "@/config/database";
 import Yacht from "@/models/Yacht";
 
 // GET /api/yachts/user/:userId
-export const GET = async (request: NextApiRequest, response: NextApiResponse) => {
+export const GET = async (request: NextApiRequest, { params }: { params: { userId: string } }): Promise<Response> => {
+
   try {
     await connectDB();
 
-    const { userId } = request.query;
+    const userId = params.userId;
     if (!userId) {
-      return response.status(400).send('User ID is required');
+      return new Response('User ID is required', { status: 400 });
     }
 
     const yachts: Yacht[] = await Yacht.find({ owner: userId }); 
+    console.log(yachts);
 
-    return response.status(200).json(yachts);
+    return new Response(JSON.stringify(yachts), { status: 200 });    
   } catch (error) {
     console.log(error);
-    return response.status(500).send('Something went wrong');
-  }
+    return new Response('Something went wrong', { status: 500 });  }
 };

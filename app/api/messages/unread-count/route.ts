@@ -1,19 +1,22 @@
 import connectDB from '@/config/database';
 import Message from '@/models/Message';
 import { getSessionUser } from '@/utils/getSessionUser';
-import { NextApiHandler } from 'next';
+import { NextApiHandler, NextApiRequest } from 'next';
 
 export const dynamic = 'force-dynamic';
 
 // GET /api/messages/unread-count
-export const GET: NextApiHandler<any> = async (req, res) => {
+export const GET = async (request: NextApiRequest): Promise<Response> => {
+
   try {
     await connectDB();
 
     const sessionUser = await getSessionUser();
 
     if (!sessionUser || !sessionUser.user) {
-      return res.status(401).json('User ID is required');
+      return new Response('User ID is required', {
+        status: 401,
+      });
     }
 
     const { userId } = sessionUser;
@@ -23,9 +26,11 @@ export const GET: NextApiHandler<any> = async (req, res) => {
       read: false,
     });
 
-    return res.status(200).json(count);
+    return new Response(JSON.stringify(count), {
+      status: 200,
+    });
   } catch (error) {
     console.log(error);
-    return res.status(500).json('Something went wrong');
+    return new Response('Something went wrong', { status: 500 });
   }
 };
