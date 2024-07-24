@@ -1,15 +1,18 @@
-'use client';
+'use client'
+
 import { useState, useEffect } from 'react';
 import YachtCard from '@/components/YachtCard';
 import Spinner from '@/components/Spinner';
 import { toast } from 'react-toastify';
+import { YachtProps } from '@/types';
 
-const SavedYachtsPage = () => {
-  const [yachts, setYachts] = useState([]);
-  const [loading, setLoading] = useState(true);
+
+const SavedYachtsPage = (): JSX.Element => {
+  const [yachts, setYachts] = useState<YachtProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const fetchSavedYachts = async () => {
+    const fetchSavedYachts = async (): Promise<void> => {
       try {
         const res = await fetch('/api/bookmarks');
 
@@ -31,23 +34,28 @@ const SavedYachtsPage = () => {
     fetchSavedYachts();
   }, []);
 
-  return loading ? (
-    <Spinner loading={loading} />
-  ) : (
+  return (
     <section className='px-4 py-6'>
       <div className='container-xl lg:container m-auto px-4 py-6'>
         <h1 className='text-2xl mb-4'>Saved Yachts</h1>
-        {yachts.length === 0 ? (
-          <p>No saved yachts</p>
+        {loading ? (
+          <Spinner loading={loading} />
         ) : (
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-            {yachts.map((yacht) => (
-              <YachtCard key={yacht._id} yacht={yacht} />
-            ))}
+          <div>
+            {yachts.length === 0 ? (
+              <p>No saved yachts</p>
+            ) : (
+              <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+                {yachts.map((yacht: YachtProps) => (
+                  <YachtCard key={yacht._id} yacht={yacht} />
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
     </section>
   );
 };
+
 export default SavedYachtsPage;

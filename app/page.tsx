@@ -4,7 +4,7 @@ import InfoBoxes from '@/components/InfoBoxes';
 import HomeYachts from '@/components/HomeYachts';
 import FeaturedYachts from '@/components/FeaturedYachts';
 
-const HomePage = () => {
+const HomePage: React.FC = (): JSX.Element => {
   return (
     <>
       <Hero />

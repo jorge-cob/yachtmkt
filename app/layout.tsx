@@ -7,6 +7,7 @@ import { GlobalProvider } from '@/context/GlobalContext';
 import '@/assets/styles/globals.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'photoswipe/dist/photoswipe.css';
+
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: 'Yachtmkt',
@@ -14,7 +15,11 @@ export const metadata = {
   keywords: 'yachts, yacht, free, yachts, free, free yachts'
 };
 
-const MainLayout = ({ children }) => {
+interface MainLayoutProps {
+  children: React.ReactNode;
+}
+
+const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <GlobalProvider>
       <AuthProvider>

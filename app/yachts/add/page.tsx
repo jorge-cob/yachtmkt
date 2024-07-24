@@ -1,7 +1,9 @@
+import React from 'react';
 import YachtAddForm from '@/components/YachtAddForm';
-import React from 'react'
 
-const YachtAddPage = () => {
+interface YachtAddPageProps {}
+
+const YachtAddPage: React.FC<YachtAddPageProps> = () => {
   return (
     <section className="bg-blue-50">
       <div className="container m-auto max-w-2xl py-24">

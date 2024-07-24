@@ -1,4 +1,5 @@
-'use client';
+'use client'
+
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
@@ -6,12 +7,13 @@ import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import YachtCard from '@/components/YachtCard';
 import Spinner from '@/components/Spinner';
 import YachtSearchForm from '@/components/YachtSearchForm';
+import { YachtProps } from '@/types';
 
 const SearchResultsPage = () => {
   const searchParams = useSearchParams();
 
-  const [yachts, setYachts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [yachts, setYachts] = useState<YachtProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const location = searchParams.get('location');
   const yachtType = searchParams.get('yachtType');
@@ -30,7 +32,7 @@ const SearchResultsPage = () => {
           setYachts([]);
         }
       } catch (error) {
-        console.log(eror);
+        console.log(error);
       } finally {
         setLoading(false);
       }
@@ -57,6 +59,7 @@ const SearchResultsPage = () => {
             >
               <FaArrowAltCircleLeft className='mr-2 mb-1' /> Back To Yachts
             </Link>
+
             <h1 className='text-2xl mb-4'>Search Results</h1>
             {yachts.length === 0 ? (
               <p>No search results found</p>
@@ -73,4 +76,5 @@ const SearchResultsPage = () => {
     </>
   );
 };
+
 export default SearchResultsPage;

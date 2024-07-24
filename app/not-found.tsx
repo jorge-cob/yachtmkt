@@ -1,8 +1,8 @@
-import React from 'react'
-import Link from 'next/link'
-import { FaExclamationTriangle } from 'react-icons/fa'
+import React from 'react';
+import Link from 'next/link';
+import { FaExclamationTriangle } from 'react-icons/fa';
 
-const NotFoundPage = () => {
+const NotFoundPage: React.FC = () => {
   return (
     <section className="bg-blue-50 min-h-screen flex-grow">
       <div className="container m-auto max-w-2xl py-24">
@@ -12,7 +12,7 @@ const NotFoundPage = () => {
           <div className="flex justify-center">
             <FaExclamationTriangle
               className="fas fa-exclamation-triangle fa-5x text-8xl text-yellow-400"
-            ></FaExclamationTriangle>
+            />
           </div>
           <div className="text-center">
             <h1 className="text-3xl font-bold mt-4 mb-2">Page Not Found</h1>
@@ -28,9 +28,8 @@ const NotFoundPage = () => {
           </div>
         </div>
       </div>
-      <div className="flex-grow"></div>
     </section>
-  )
-}
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;
