@@ -10,11 +10,17 @@ const YachtSearchForm: React.FC<YachtSearchFormProps> = () => {
 
   const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit =  (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(`/search?location=${location}&yachtType=${yachtType}`);
-  };
 
+    if (location === '' && yachtType === 'All') {
+      router.push('/yachts');
+    } else {
+      const query = `?location=${location}&yachtType=${yachtType}`;
+
+      router.push(`/yachts/search${query}`);
+    }
+  };
 
   return (
     <form
@@ -44,6 +50,7 @@ const YachtSearchForm: React.FC<YachtSearchFormProps> = () => {
           value={yachtType}
           onChange={(e) => setYachtType(e.target.value)}
         >
+          <option value='All'>All</option>
           <option value="Antique">Antique and Classic</option>
           <option value="Catamaran">Catamaran</option>
           <option value="Monohull">Centre Cockpit</option>
