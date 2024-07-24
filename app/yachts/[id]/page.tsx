@@ -1,7 +1,8 @@
 'use client';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import { fetchYacht } from '@/utils/request';
 import YachtHeaderImage from '@/components/YachtHeaderImage';
 import YachtDetails from '@/components/YachtDetails';
@@ -11,18 +12,19 @@ import { FaArrowLeft } from 'react-icons/fa';
 import BookmarkButton from '@/components/BookmarkButton';
 import ShareButtons from '@/components/ShareButton';
 import YachtContactForm from '@/components/YachtContactForm';
+import { YachtProps } from '@/types';
 
-const YachtPage = () => {
+const YachtPage: React.FC<YachtProps> = () => {
   const { id } = useParams();
-
-  const [yacht, setYacht] = useState(null);
+  const [yacht, setYacht] = useState<YachtProps | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchYachtData = async () => {
-      if (!id) return;
       try {
-        const yacht = await fetchYacht(id);
+        setLoading(true);
+        const yachtId = Array.isArray(id) ? id[0] : id;
+        const yacht = await fetchYacht(yachtId);
         setYacht(yacht);
       } catch (error) {
         console.error('Error fetching yacht:', error);
@@ -43,6 +45,7 @@ const YachtPage = () => {
       </h1>
     );
   }
+
 
   return (
     <>
