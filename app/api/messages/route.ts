@@ -1,20 +1,25 @@
 import connectDB from '@/config/database';
 import Message from '@/models/Message';
 import { getSessionUser } from '@/utils/getSessionUser';
+import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
 
 export const dynamic = 'force-dynamic';
 
 // GET /api/messages
-export const GET = async () => {
+export const GET: NextApiHandler = async (
+  _req,
+  res
+): Promise<void> => {
   try {
     await connectDB();
 
     const sessionUser = await getSessionUser();
 
     if (!sessionUser || !sessionUser.user) {
-      return new Response(JSON.stringify('User ID is required'), {
-        status: 401,
-      });
+      res
+        .status(401)
+        .json({ message: 'User ID is required' });
+      return;
     }
 
     const { userId } = sessionUser;
@@ -34,38 +39,40 @@ export const GET = async () => {
 
     const messages = [...unreadMessages, ...readMessages];
 
-    return new Response(JSON.stringify(messages), { status: 200 });
+    res.status(200).json(messages);
   } catch (error) {
     console.log(error);
-    return new Response('Something went wrong', { status: 500 });
+    res.status(500).json({ message: 'Something went wrong' });
   }
 };
 
 // POST /api/messages
-export const POST = async (request) => {
+export const POST: NextApiHandler = async (
+  req: NextApiRequest | any,
+  res: NextApiResponse
+): Promise<void> => {
   try {
     await connectDB();
 
-    const { name, email, phone, message, yacht, recipient } =
-      await request.json();
+    const { name, email, phone, message, yacht, recipient } = await req.json();
 
     const sessionUser = await getSessionUser();
 
     if (!sessionUser || !sessionUser.user) {
-      return new Response(
-        JSON.stringify({ message: 'You must be logged in to send a message' }),
-        { status: 401 }
-      );
+      res
+        .status(401)
+        .json({ message: 'You must be logged in to send a message' });
+      return;
     }
 
     const { user } = sessionUser;
 
     // Can not send message to self
     if (user.id === recipient) {
-      return new Response(
-        JSON.stringify({ message: 'Can not send a message to yourself' }),
-        { status: 400 }
-      );
+      res
+        .status(400)
+        .json({ message: 'Can not send a message to yourself' });
+      return;
     }
 
     const newMessage = new Message({
@@ -80,11 +87,9 @@ export const POST = async (request) => {
 
     await newMessage.save();
 
-    return new Response(JSON.stringify({ message: 'Message Sent' }), {
-      status: 200,
-    });
+    res.status(200).json({ message: 'Message Sent' });
   } catch (error) {
     console.log(error);
-    return new Response('Something went wrong', { status: 500 });
+    res.status(500).json({ message: 'Something went wrong' });
   }
 };
