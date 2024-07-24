@@ -4,11 +4,11 @@ import { getSessionUser } from '@/utils/getSessionUser';
 
 export const dynamic = 'force-dynamic';
 
-export const POST = async (request) => {
+export const POST = async (request: Request): Promise<Response> => {
   try {
     await connectDB();
 
-    const { yachtId } = await request.json();
+    const { yachtId } = await request.json() as { yachtId: string };
 
     const sessionUser = await getSessionUser();
 
@@ -16,14 +16,12 @@ export const POST = async (request) => {
       return new Response('User ID is required', { status: 401 });
     }
 
-    const { userId } = sessionUser;
-
     // Find user in database
-    const user = await User.findOne({ _id: userId });
+    const user = await User.findById(sessionUser.userId).select('bookmarks');
 
     // Check if yacht is bookmarked
-    let isBookmarked = user.bookmarks.includes(yachtId);
-
+    const isBookmarked = user.bookmarks.some((bookmark: string) => bookmark === yachtId);
+    
     return new Response(JSON.stringify({ isBookmarked }), {
       status: 200,
     });

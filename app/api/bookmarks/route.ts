@@ -3,10 +3,7 @@ import User from '@/models/User';
 import Yacht from '@/models/Yacht';
 import { getSessionUser } from '@/utils/getSessionUser';
 
-export const dynamic = 'force-dynamic';
-
-// GET /api/bookmarks
-export const GET = async () => {
+export const GET = async (): Promise<Response> => {
   try {
     await connectDB();
 
@@ -31,7 +28,7 @@ export const GET = async () => {
   }
 };
 
-export const POST = async (request) => {
+export const POST = async (request: Request): Promise<Response> => {
   try {
     await connectDB();
 
