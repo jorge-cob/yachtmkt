@@ -1,7 +1,7 @@
 import React from 'react'
 import YachtSearchForm from './YachtSearchForm'
 
-const Hero = () => {
+const Hero: React.FC = () => {
   return (
     <section className="bg-blue-700 py-20 mb-4">
       <div

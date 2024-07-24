@@ -1,10 +1,9 @@
 import React from 'react';
 import YachtEditForm from '@/components/YachtEditForm';
-import { YachtProps } from '@/types';
 
 
 
-const YachtEditPage: React.FC<YachtProps> = () => {
+const YachtEditPage: React.FC = () => {
   return (
     <section className="bg-blue-50">
       <div className="container m-auto max-w-2xl py-24">

@@ -1,9 +1,9 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import connectDB from "@/config/database";
 import Yacht from "@/models/Yacht";
+import { NextRequest } from 'next/server';
 
 // GET /api/yachts/user/:userId
-export const GET = async (request: NextApiRequest, { params }: { params: { userId: string } }): Promise<Response> => {
+export const GET = async (request: NextRequest, { params }: { params: { userId: string } }): Promise<Response> => {
 
   try {
     await connectDB();

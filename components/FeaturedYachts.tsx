@@ -4,7 +4,7 @@ import FeaturedYachtCard from '@/components/FeaturedYachtCard';
 import { YachtProps } from '@/types';
 
 
-const FeaturedYachts: React.FC<YachtProps> = async () => {
+const FeaturedYachts: React.FC = async () => {
   const yachts = await fetchYachts({ showFeatured: true });
 
   return yachts.length > 0 && (

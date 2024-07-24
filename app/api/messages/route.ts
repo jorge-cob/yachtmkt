@@ -1,12 +1,13 @@
 import connectDB from '@/config/database';
 import Message from '@/models/Message';
 import { getSessionUser } from '@/utils/getSessionUser';
-import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
+import { NextApiHandler } from 'next';
+import { NextRequest } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
 // GET /api/messages
-export const GET: NextApiHandler = async (): Promise<Response> => {
+export const GET = async (): Promise<Response> => {
   try {
     await connectDB();
 
@@ -42,7 +43,7 @@ export const GET: NextApiHandler = async (): Promise<Response> => {
 };
 
 // POST /api/messages
-export const POST = async (request: NextApiRequest | any): Promise<Response> => {
+export const POST = async (request: Request | NextRequest | any): Promise<Response> => {
 
   try {
     await connectDB();

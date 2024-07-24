@@ -14,7 +14,7 @@ import ShareButtons from '@/components/ShareButton';
 import YachtContactForm from '@/components/YachtContactForm';
 import { YachtProps } from '@/types';
 
-const YachtPage: React.FC<YachtProps> = () => {
+const YachtPage: React.FC = () => {
   const { id } = useParams();
   const [yacht, setYacht] = useState<YachtProps | null>(null);
   const [loading, setLoading] = useState(true);

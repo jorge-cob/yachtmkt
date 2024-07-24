@@ -1,15 +1,33 @@
-'use client';
-import { useState, useEffect } from 'react';
+'use client'
+
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useGlobalContext } from '@/context/GlobalContext';
 
-const Message = ({ message }) => {
+interface MessageProps {
+  message: {
+    _id: string;
+    read: boolean;
+    yacht: {
+      name: string;
+    };
+    sender: {
+      username: string;
+    };
+    email: string;
+    phone: string;
+    body: string;
+    createdAt: string;
+  };
+}
+
+const Message: React.FC<MessageProps> = ({ message }) => {
   const [isRead, setIsRead] = useState(message.read);
   const [isDeleted, setIsDeleted] = useState(false);
 
   const { setUnreadCount } = useGlobalContext();
 
-  const handleReadClick = async () => {
+  const handleReadClick = async (): Promise<void> => {
     try {
       const res = await fetch(`/api/messages/${message._id}`, {
         method: 'PUT',
@@ -31,7 +49,7 @@ const Message = ({ message }) => {
     }
   };
 
-  const handleDeleteClick = async () => {
+  const handleDeleteClick = async (): Promise<void> => {
     try {
       const res = await fetch(`/api/messages/${message._id}`, {
         method: 'DELETE',
@@ -53,13 +71,8 @@ const Message = ({ message }) => {
   }
 
   return (
-    <div className='relative bg-white p-4 rounded-md shadow-md border border-gray-200'>
-      {!isRead && (
-        <div className='absolute top-2 right-2 bg-yellow-500 text-white px-2 py-1 rounded-md'>
-          New
-        </div>
-      )}
-      <h2 className='text-xl mb-4'>
+    <div className='bg-white p-4 rounded-md shadow-md'>
+      <h2 className='text-2xl font-bold mb-2'>
         <span className='font-bold'>Yacht Inquiry:</span>{' '}
         {message.yacht.name}
       </h2>
