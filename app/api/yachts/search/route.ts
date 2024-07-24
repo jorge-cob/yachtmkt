@@ -11,7 +11,7 @@ export const GET = async (request: Request): Promise<Response> => {
     const yachtType: string | null = searchParams.get('yachtType');
 
     const locationPattern: RegExp = new RegExp(location || '', 'i');
-
+    console.log('yyyuuuup');
     // Match location pattern against database fields
     let query: { $or: { [key: string]: RegExp }[]; type?: RegExp } = {
       $or: [
