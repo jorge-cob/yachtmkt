@@ -1,24 +1,20 @@
 'use client';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-const YachtSearchForm = () => {
-  const [location, setLocation] = useState('');
-  const [yachtType, setYachtType] = useState('All');
+type YachtSearchFormProps = {};
+
+const YachtSearchForm: React.FC<YachtSearchFormProps> = () => {
+  const [location, setLocation] = useState<string>('');
+  const [yachtType, setYachtType] = useState<string>('All');
 
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (location === '' && yachtType === 'All') {
-      router.push('/yachts');
-    } else {
-      const query = `?location=${location}&yachtType=${yachtType}`;
-
-      router.push(`/yachts/search-results${query}`);
-    }
+    router.push(`/search?location=${location}&yachtType=${yachtType}`);
   };
+
 
   return (
     <form

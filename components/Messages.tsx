@@ -1,19 +1,21 @@
 'use client';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Spinner from '@/components/Spinner';
-import Message from '@/components/Message';
+import Message, { MessageProps } from '@/components/Message';
 
-const Messages = () => {
-  const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState(true);
+interface Props {}
+
+const Messages: React.FC = () => {
+  const [messages, setMessages] = useState<MessageProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const getMessages = async () => {
+    const getMessages = async (): Promise<void> => {
       try {
         const res = await fetch('/api/messages');
 
         if (res.status === 200) {
-          const data = await res.json();
+          const data: MessageProps[] = await res.json();
           setMessages(data);
         }
       } catch (error) {
@@ -25,7 +27,6 @@ const Messages = () => {
 
     getMessages();
   }, []);
-
   return loading ? (
     <Spinner loading={loading} />
   ) : (

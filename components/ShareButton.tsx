@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -9,7 +10,15 @@ import {
   EmailIcon,
 } from 'react-share';
 
-const ShareButtons = ({ yacht }) => {
+interface ShareButtonsProps {
+  yacht: {
+    _id: string;
+    name: string;
+    type: string;
+  };
+}
+
+const ShareButtons: React.FC<ShareButtonsProps> = ({ yacht }) => {
   const shareUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/yachts/${yacht._id}`;
 
   return (
@@ -20,7 +29,6 @@ const ShareButtons = ({ yacht }) => {
       <div className='flex gap-3 justify-center pb-5'>
         <FacebookShareButton
           url={shareUrl}
-          quote={yacht.name}
           hashtag={`#${yacht.type.replace(/\s/g, '')}ForRent`}
         >
           <FacebookIcon size={40} round={true} />
@@ -53,4 +61,5 @@ const ShareButtons = ({ yacht }) => {
     </>
   );
 };
+
 export default ShareButtons;

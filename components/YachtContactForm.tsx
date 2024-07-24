@@ -1,10 +1,17 @@
 'use client';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { FaPaperPlane } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { useSession } from 'next-auth/react';
 
-const YachtContactForm = ({ yacht }) => {
+interface YachtContactFormProps {
+  yacht: {
+    _id: string;
+    owner: string;
+  };
+}
+
+const YachtContactForm: React.FC<YachtContactFormProps> = ({ yacht }) => {
   const { data: session } = useSession();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -12,7 +19,7 @@ const YachtContactForm = ({ yacht }) => {
   const [phone, setPhone] = useState('');
   const [wasSubmitted, setWasSubmitted] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const data = {

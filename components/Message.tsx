@@ -4,24 +4,22 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useGlobalContext } from '@/context/GlobalContext';
 
-interface MessageProps {
-  message: {
-    _id: string;
-    read: boolean;
-    yacht: {
-      name: string;
-    };
-    sender: {
-      username: string;
-    };
-    email: string;
-    phone: string;
-    body: string;
-    createdAt: string;
+export interface MessageProps {
+  _id: string;
+  read: boolean;
+  yacht: {
+    name: string;
   };
+  sender: {
+    username: string;
+  };
+  email: string;
+  phone: string;
+  body: string;
+  createdAt: string;
 }
 
-const Message: React.FC<MessageProps> = ({ message }) => {
+const Message = ({ message } : {message: MessageProps}) => {
   const [isRead, setIsRead] = useState(message.read);
   const [isDeleted, setIsDeleted] = useState(false);
 
