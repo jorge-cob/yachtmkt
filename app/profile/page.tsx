@@ -1,31 +1,32 @@
-'use client';
+'use client'
 
-import Image from 'next/image'
-import Link from 'next/link'
-import React, { useState, useEffect } from 'react'
-import { useSession } from 'next-auth/react'
-import profileDefault from '@/assets/images/profile.png'
-import Spinner from '@/components/Spinner'
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import Spinner from '@/components/Spinner';
 import { toast } from 'react-toastify';
+import { YachtProps } from '@/types';
+import profileDefault from '@/assets/images/profile.png'
 
-const ProfilePage = () => {
+const ProfilePage: React.FC = () => {
 
   const { data: session } = useSession();
-  const profileImage = session?.user?.image;
-  const profileName = session?.user?.name;
-  const profileEmail = session?.user?.email;
+  const profileImage = session?.user?.image as string | undefined;
+  const profileName = session?.user?.name as string | undefined;
+  const profileEmail = session?.user?.email as string | undefined;
 
-  const [yachts, setYachts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [yachts, setYachts] = useState<YachtProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    const fetchUserYachts = async (userId) => {
+    const fetchUserYachts = async (userId: string | undefined) => {
       if (!userId) return;
 
       try {
         setLoading(true);
         const res = await fetch(`/api/yachts/user/${userId}`);
-        if (res.status === 200) {
+        if (res.ok) {
           const data = await res.json();
           setYachts(data);
         }
@@ -37,18 +38,17 @@ const ProfilePage = () => {
     };
 
     fetchUserYachts(session?.user?.id);
-    
-  }, [session])
+  }, [session]);
 
-  const handleDeleteYacht = async (yachtId) => {
+  const handleDeleteYacht = async (yachtId: string) => {
     const confirmed = window.confirm('Are you sure you want to delete this yacht?');
 
     if (!confirmed) return;
-    
+
     try {
       const res = await fetch(`/api/yachts/${yachtId}`, { method: 'DELETE' });
 
-      if (res.status === 200) {
+      if (res.ok) {
         const updatedYachts = yachts.filter((yacht) => yacht._id !== yachtId);
         setYachts(updatedYachts);
         toast.success('Yacht deleted successfully');
@@ -86,7 +86,7 @@ const ProfilePage = () => {
               {!loading && yachts.length == 0 && (
                 <p>You have no yachts listed</p>
               )}
-              {loading ? <Spinner /> : (
+              {loading ? <Spinner loading={loading} /> : (
                 yachts.map((yacht) => (
                   <div className="mb-10" key={yacht._id}>
                   <Link href={`/yachts/${yacht._id}`}>
