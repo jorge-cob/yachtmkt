@@ -1,13 +1,11 @@
-import React from 'react'
-import {fetchYachts} from '@/utils/request'
+import React from 'react';
+import { fetchYachts } from '@/utils/request';
 import FeaturedYachtCard from '@/components/FeaturedYachtCard';
+import { YachtProps } from '@/types';
 
-const FeaturedYachts = async () => {
-  const yachts = await fetchYachts({ 
-    showFeatured: true 
-  });
 
-  console.log(yachts);
+const FeaturedYachts: React.FC<YachtProps> = async () => {
+  const yachts = await fetchYachts({ showFeatured: true });
 
   return yachts.length > 0 && (
     <section className="bg-blue-50 px-4 pt-6 pb-10">
@@ -16,16 +14,13 @@ const FeaturedYachts = async () => {
           Featured Yachts
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {
-            yachts.map(yacht => (
-              <FeaturedYachtCard key={yacht._id} yacht={yacht} />
-            ))
-          }
-
+          {yachts.map((yacht) => (
+            <FeaturedYachtCard key={yacht._id} yacht={yacht} />
+          ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default FeaturedYachts
+export default FeaturedYachts;

@@ -3,7 +3,30 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaBath, FaMoneyBill, FaRulerCombined, FaBed, FaMapMarker } from 'react-icons/fa';
 
-const FeaturedYachtCard = ({ yacht }) => {
+export type FeaturedYachtCardProps = {
+  yacht: {
+    _id: string;
+    name: string;
+    type: string;
+    beds: number;
+    baths: number;
+    feet: number;
+    rates: {
+      daily?: number;
+      weekly?: number;
+      monthly?: number;
+    };
+    location: {
+      street?: string;
+      city?: string;
+      state?: string;
+      zipcode?: string;
+    };
+    images: string[];
+  };
+};
+
+const FeaturedYachtCard: React.FC<FeaturedYachtCardProps> = ({ yacht }) => {
   const getRateDisplay = () => {
     const { rates } = yacht;
 
