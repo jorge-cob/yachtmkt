@@ -21,5 +21,7 @@ https://yacht-share.vercel.app
 ## TO DO
 
 - Customizable global variables to adapt template to different product types
-- Typescript
+
+## In Progress
+
 - Tests
